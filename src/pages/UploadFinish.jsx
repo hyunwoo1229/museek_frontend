@@ -17,14 +17,18 @@ function UploadFinish() {
       }
 
       try {
-        const res = await axios.post(`http://localhost:8080/api/youtube/${boardId}`, null);
+        const res = await axios.post(`http://localhost:8080/api/youtube/${boardId}`, null, {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          }
+        });
         
-        alert("✅ YouTube 업로드 성공!");
+        alert("YouTube 업로드 성공!");
         window.open(res.data.data, "_blank");
         sessionStorage.removeItem("pendingUploadBoardId");
         navigate("/");
       } catch (err) {
-        alert("❌ 업로드 실패: " + (err.response?.data?.message || err.message));
+        alert("업로드 실패: " + (err.response?.data?.message || err.message));
         navigate("/");
       }
     };
@@ -33,7 +37,7 @@ function UploadFinish() {
   }, [navigate]);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white px-4">
+    <div className="flex flex-col items-center justify-center h-screen bg-[#121212] text-white px-4">
       <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-purple-500 border-solid mb-6" />
       <h2 className="text-2xl font-semibold mb-2">YouTube 업로드 중입니다...</h2>
       <p className="text-sm text-gray-400">잠시만 기다려 주세요 🎵</p>

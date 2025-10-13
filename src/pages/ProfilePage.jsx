@@ -63,7 +63,7 @@ const ProfilePage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+      <div className="min-h-screen flex items-center justify-center bg-[#121212] text-white">
         로딩 중…
       </div>
     );
@@ -83,7 +83,7 @@ const ProfilePage = () => {
       .toUpperCase();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex justify-center items-center p-6">
+    <div className="min-h-screen bg-[#121212] flex justify-center items-center p-6">
       <div className="bg-gray-800/60 backdrop-blur-md p-8 rounded-2xl w-full max-w-lg shadow-xl border border-gray-700">
         {/* Header */}
         <h2 className="text-3xl font-extrabold text-white mb-4 text-center">내 정보</h2>

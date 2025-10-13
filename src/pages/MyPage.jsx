@@ -34,7 +34,7 @@ function MyPage() {
       } catch (error) {
         console.error('MyPage: 게시물 조회 실패. 에러:', error);
         if (error.response?.status !== 401) {
-          alert('게시글을 불러오지 못했습니다.');
+          alert('게시글을 불러오지.');
         }
       } finally {
         console.log("MyPage: fetchBoards 종료. 로딩 상태를 해제합니다.");
@@ -67,14 +67,14 @@ function MyPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+      <div className="min-h-screen flex justify-center items-center bg-[#121212] text-white">
         ⏳ 게시글을 불러오는 중...
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white px-4 py-12">
+    <div className="min-h-screen bg-[#121212] text-white px-4 py-12">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-6">
           📁 마이페이지

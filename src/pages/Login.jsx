@@ -16,19 +16,19 @@ const Login = () => {
 
     try {
         console.log("2. 서버에 로그인 요청 시도. 요청 데이터:", form);
-        
+
         const res = await axios.post('http://localhost:8080/api/auth/login', form);
 
         console.log("3. 서버로부터 응답 받음. 응답 데이터:", res.data);
 
         const { accessToken, refreshToken, name } = res.data;
-        
+
         console.log("4. 토큰 저장 시도. accessToken:", accessToken, "refreshToken:", refreshToken);
 
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
         localStorage.setItem('name', name);
-        
+
         console.log("5. 토큰 저장 완료. 메인 페이지로 이동합니다.");
 
         navigate('/');
@@ -39,7 +39,7 @@ const Login = () => {
 };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <div className="flex justify-center items-center h-screen bg-[#121212] text-white">
       <div className="bg-gray-800/80 backdrop-blur-md p-8 rounded-xl shadow-xl w-full max-w-sm">
         <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 text-center mb-6">
           로그인

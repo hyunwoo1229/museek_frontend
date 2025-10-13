@@ -1,4 +1,3 @@
-// src/App.jsx
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
@@ -17,9 +16,9 @@ import UploadFinish from './pages/UploadFinish';
 import SocialExtra from './pages/SocialExtra';
 import SearchPage from './pages/SearchPage';
 import ProfilePage from './pages/ProfilePage';
+
 import './setupAxios';
 
-// (1) 앱 시작 시, 로컬스토리지에 토큰이 있으면 axios 헤더에 자동으로 붙입니다.
 const token = localStorage.getItem('token');
 if (token) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -43,7 +42,7 @@ function App() {
         {/* 채팅, 음악, 업로드 완료 페이지 */}
         <Route path="/chat" element={<Chat />} />
         <Route path="/music" element={<Music />} />
-        <Route path="/upload/finish" element={<UploadFinish />} />
+        <Route path="/upload-finish" element={<UploadFinish />} />
 
         {/* ○○○ 검색 결과 페이지 (이 부분이 핵심) ○○○ */}
         <Route path="/search" element={<SearchPage />} />

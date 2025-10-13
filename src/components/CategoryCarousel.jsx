@@ -1,4 +1,3 @@
-// src/components/CategoryCarousel.jsx
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';

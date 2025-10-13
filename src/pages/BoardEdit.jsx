@@ -54,13 +54,13 @@ function BoardEdit() {
 
   if (loading)
     return (
-      <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+      <div className="min-h-screen flex justify-center items-center bg-[#121212] text-white">
         불러오는 중...
       </div>
     );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white px-4 py-12">
+    <div className="min-h-screen bg-[#121212] text-white px-4 py-12">
       <div className="max-w-2xl mx-auto bg-gray-800/70 p-8 rounded-xl shadow-xl backdrop-blur">
         <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-6">
           게시글 수정

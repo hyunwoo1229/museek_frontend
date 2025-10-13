@@ -3,8 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
-import { Pencil, Trash2 } from 'lucide-react';
-import { Upload } from 'lucide-react';
+import { Pencil, Trash2, Upload } from 'lucide-react';
 
 function BoardDetail() {
   const { id } = useParams();
@@ -12,13 +11,11 @@ function BoardDetail() {
   const [board, setBoard] = useState(null);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
-  // 'token' -> 'accessToken'으로 키 이름 수정
   const accessToken = localStorage.getItem('accessToken');
 
   useEffect(() => {
     const fetchBoard = async () => {
       try {
-        // headers 옵션 제거 -> 인터셉터가 자동으로 처리
         const response = await axios.get(`http://localhost:8080/api/board/${id}`);
         setBoard(response.data);
       } catch (error) {
@@ -31,7 +28,6 @@ function BoardDetail() {
     };
 
     fetchBoard();
-  // 의존성 배열에서 token 제거
   }, [id, navigate]);
 
   const handleEdit = () => {
@@ -42,8 +38,9 @@ function BoardDetail() {
     if (!window.confirm('정말 삭제하시겠습니까?')) return;
 
     try {
-      // headers 옵션 제거 -> 인터셉터가 자동으로 처리
-      await axios.delete(`http://localhost:8080/api/board/${id}`);
+      await axios.delete(`http://localhost:8080/api/board/${id}`, {
+        headers: { 'Authorization': `Bearer ${accessToken}` }
+      });
       alert('게시글이 삭제되었습니다.');
       navigate('/');
     } catch (error) {
@@ -52,37 +49,43 @@ function BoardDetail() {
     }
   };
 
+  // 유튜브 업로드 핸들러
   const handleYoutubeUpload = async () => {
     if (!window.confirm('이 음악을 YouTube에 업로드하시겠습니까?')) return;
+    if (!accessToken) {
+        alert("업로드를 위해서는 먼저 로그인이 필요합니다.");
+        navigate('/login');
+        return;
+    }
 
     try {
       setUploading(true);
-      // headers 옵션 제거 -> 인터셉터가 자동으로 처리
-      const res = await axios.post(
-        `http://localhost:8080/api/youtube/${id}`,
-        null
-      );
-      alert(`✅ YouTube 업로드 성공!\n${res.data.data}`);
-      window.open(res.data.data, '_blank');
-    } catch (e) {
-      const status = e.response?.status;
-      const message = e.response?.data?.message || e.message;
 
-      if (status === 401 || status === 403) {
-        sessionStorage.setItem('pendingUploadBoardId', id);
-        // 'token' -> 'accessToken' 변수 사용
-        window.location.href = `http://localhost:8080/api/youtube/connect?token=${accessToken}`;
-      } else {
-        alert(`❌ 업로드 실패: ${message}`);
-      }
-    } finally {
+      // 나중에 업로드를 완료하기 위해 현재 게시글 ID를 세션 스토리지에 저장
+      sessionStorage.setItem('pendingUploadBoardId', id);
+
+      // 백엔드에 '구글 인증 페이지 URL'을 요청
+      const response = await axios.get("http://localhost:8080/api/youtube/auth-url", {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      });
+      
+      const googleAuthUrl = response.data;
+
+      // 백엔드로부터 받은 구글 인증 페이지로 사용자를 이동.
+      // 이후 과정은 구글 인증 -> 백엔드 콜백 -> /upload-finish 페이지로 자동 진행
+      window.location.href = googleAuthUrl;
+
+    } catch (error) {
+      alert("YouTube 인증을 시작하는 데 실패했습니다: " + (error.response?.data?.message || error.message));
       setUploading(false);
     }
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+      <div className="min-h-screen flex justify-center items-center bg-[#121212] text-white">
         ⏳ 게시글을 불러오는 중...
       </div>
     );
@@ -91,11 +94,11 @@ function BoardDetail() {
   if (!board) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white px-4 py-12">
+    <div className="min-h-screen bg-[#121212] text-white px-4 py-12">
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="flex justify-between items-start">
           <div>
-            <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 text-transparent bg-clip-text mb-2">
+            <h2 className="text-3xl font-bold text-white mb-2">
               {board.title}
             </h2>
             <p className="text-gray-400 text-sm">
@@ -107,15 +110,14 @@ function BoardDetail() {
             <div className="flex gap-2">
               <button
                 onClick={handleEdit}
-                className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-white rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:brightness-110 transition"
-                >
-                   <Pencil size={16} />
-              
+                className="flex items-center gap-1 px-4 py-2 text-sm font-medium bg-white text-black rounded-lg hover:bg-gray-200 transition"
+              >
+                <Pencil size={16} />
                 수정
               </button>
               <button
                 onClick={handleDelete}
-                className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-white rounded-lg bg-gradient-to-r from-red-600 to-pink-600 hover:brightness-110 transition"
+                className="flex items-center gap-1 px-4 py-2 text-sm font-medium bg-white text-black rounded-lg hover:bg-gray-200 transition"
               >
                 <Trash2 size={16} />
                 삭제
@@ -138,7 +140,7 @@ function BoardDetail() {
             showJumpControls={false}
             customAdditionalControls={[]}
             layout="horizontal"
-            className="w-full rounded-lg bg-gray-900 text-white accent-purple-500"
+            className="w-full rounded-lg bg-transparent rhap-white-controls"
           />
         </div>
 
@@ -152,7 +154,7 @@ function BoardDetail() {
               className="inline-flex items-center gap-2 px-5 py-3 mt-4 font-semibold text-white bg-gradient-to-r from-red-600 to-red-500 rounded-lg hover:brightness-110 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Upload size={18} />
-              {uploading ? 'YouTube 업로드 중...' : 'YouTube 업로드'}
+              {uploading ? '인증 페이지로 이동 중...' : 'YouTube 업로드'}
             </button>
           </div>
         )}

@@ -1,4 +1,3 @@
-// src/components/IntroSection.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -16,7 +15,7 @@ const IntroSection = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="text-white bg-gradient-to-b from-[#0f0f1a] to-[#1c1c2b]">
+    <div className="text-white bg-[#121212]">
       {/* Section 1 */}
       <motion.section
         className="min-h-screen flex flex-col justify-center items-center text-center px-6 mb-12"

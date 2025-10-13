@@ -1,4 +1,3 @@
-// src/pages/SocialExtra.jsx
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -48,8 +47,8 @@ const SocialExtra = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-      <div className="bg-gray-800/90 backdrop-blur-md p-8 rounded-xl shadow-xl w-full max-w-sm">
+    <div className="flex justify-center items-center h-screen bg-[#121212] text-white">
+      <div className="w-full max-w-xl bg-gray-800/90 backdrop-blur-md p-8 rounded-xl shadow-lg">
         <h2 className="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-6">
           추가 정보 입력
         </h2>
@@ -109,6 +108,35 @@ const SocialExtra = () => {
             제출하기
           </button>
         </form>
+
+        <div className="mt-6 space-y-2">
+          {/* Google */}
+          <button
+            onClick={() => (window.location.href = 'http://localhost:8080/oauth2/authorization/google')}
+            className="w-full bg-white text-black py-2 px-4 rounded flex items-center justify-center gap-2 border"
+          >
+            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" className="w-5 h-5" />
+            구글로 시작하기
+          </button>
+
+          {/* Naver */}
+          <button
+            onClick={() => (window.location.href = 'http://localhost:8080/oauth2/authorization/naver')}
+            className="w-full bg-[#03C75A] text-white py-2 px-4 rounded flex items-center justify-center gap-2"
+          >
+            <img src="https://www.svgrepo.com/show/368248/naver-square.svg" alt="Naver" className="w-5 h-5 rounded-sm" />
+            네이버로 시작하기
+          </button>
+
+          {/* Kakao */}
+          <button
+            onClick={() => (window.location.href = 'http://localhost:8080/oauth2/authorization/kakao')}
+            className="w-full bg-[#FEE500] text-black py-2 px-4 rounded flex items-center justify-center gap-2"
+          >
+            <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="Kakao" className="w-5 h-5" />
+            카카오로 시작하기
+          </button>
+        </div>
       </div>
     </div>
   );

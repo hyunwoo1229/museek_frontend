@@ -10,14 +10,14 @@ const Register = () => {
   const [form, setForm] = useState({
     loginId: '',
     password: '',
-    confirmPassword: '', // 추가
+    confirmPassword: '',
     name: '',
     age: '',
     gender: '',
     country: ''
   });
 
-  const [passwordError, setPasswordError] = useState(''); // 비밀번호 불일치 오류 상태
+  const [passwordError, setPasswordError] = useState('');
 
   const navigate = useNavigate();
 
@@ -32,7 +32,6 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 비밀번호 확인
     if (form.password !== form.confirmPassword) {
       setPasswordError('비밀번호가 일치하지 않습니다.');
       return;
@@ -55,7 +54,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <div className="flex justify-center items-center h-screen bg-[#121212] text-white">
       <div className="bg-gray-800/80 backdrop-blur-md p-8 rounded-xl shadow-xl w-full max-w-sm">
         <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 text-center mb-6">
           회원가입

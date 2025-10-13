@@ -42,7 +42,7 @@ function BoardWrite() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white px-4 py-12 flex justify-center">
+    <div className="min-h-screen bg-[#121212] text-white px-4 py-12 flex justify-center">
       <div className="w-full max-w-xl bg-gray-800/90 backdrop-blur-md p-8 rounded-xl shadow-lg">
       <h1 className="text-2xl font-bold text-center mb-6 text-pink-400">게시글 작성</h1>
 

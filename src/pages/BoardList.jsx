@@ -1,4 +1,3 @@
-// src/pages/BoardList.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -9,12 +8,12 @@ function BoardList() {
   const [userName, setUserName] = useState('');
   const [loading, setLoading] = useState(true);
 
-  const [popularBoards, setPopularBoards]         = useState([]);
-  const [recentBoards, setRecentBoards]           = useState([]);
-  const [sameAgeBoards, setSameAgeBoards]         = useState([]);
+  const [popularBoards, setPopularBoards]          = useState([]);
+  const [recentBoards, setRecentBoards]            = useState([]);
+  const [sameAgeBoards, setSameAgeBoards]          = useState([]);
   const [sameCountryBoards, setSameCountryBoards] = useState([]);
-  const [sameGenderBoards, setSameGenderBoards]   = useState([]);
-  const [randomBoards, setRandomBoards]           = useState([]);
+  const [sameGenderBoards, setSameGenderBoards]    = useState([]);
+  const [randomBoards, setRandomBoards]            = useState([]);
 
   useEffect(() => {
     const storedName = localStorage.getItem('name');
@@ -25,7 +24,6 @@ function BoardList() {
     const fetchCategories = async () => {
       setLoading(true);
       try {
-        // 인터셉터가 localStorage를 확인하여 토큰이 있으면 자동으로 헤더를 추가하고, 없으면 그냥 요청을 보냅니다.
         const response = await axios.get(
           'http://localhost:8080/api/board'
         );
@@ -55,13 +53,13 @@ function BoardList() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <div className="min-h-screen bg-[#121212] text-white">
       <main className="w-full mx-auto px-2 sm:px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 pt-6 pb-8">
 
         {/* 1) 조회순 게시물 */}
         {popularBoards.length > 0 && (
           <>
-            <h2 className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500 mb-4">
+            <h2 className="text-3xl font-semibold text-white mb-4">
               조회순 게시물
             </h2>
             <CategoryCarousel items={popularBoards} basePath="/board" />
@@ -71,7 +69,7 @@ function BoardList() {
         {/* 2) 최신순 게시물 */}
         {recentBoards.length > 0 && (
           <>
-            <h2 className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500 mt-12 mb-4">
+            <h2 className="text-3xl font-semibold text-white mt-12 mb-4">
               최신순 게시물
             </h2>
             <CategoryCarousel items={recentBoards} basePath="/board" />
@@ -83,7 +81,7 @@ function BoardList() {
           <>
             {sameAgeBoards.length > 0 && (
               <>
-                <h2 className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500 mt-12 mb-4">
+                <h2 className="text-3xl font-semibold text-white mt-12 mb-4">
                   같은 나이대 게시물
                 </h2>
                 <CategoryCarousel items={sameAgeBoards} basePath="/board" />
@@ -91,7 +89,7 @@ function BoardList() {
             )}
             {sameCountryBoards.length > 0 && (
               <>
-                <h2 className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500 mt-12 mb-4">
+                <h2 className="text-3xl font-semibold text-white mt-12 mb-4">
                   같은 국가 게시물
                 </h2>
                 <CategoryCarousel items={sameCountryBoards} basePath="/board" />
@@ -99,7 +97,7 @@ function BoardList() {
             )}
             {sameGenderBoards.length > 0 && (
               <>
-                <h2 className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500 mt-12 mb-4">
+                <h2 className="text-3xl font-semibold text-white mt-12 mb-4">
                   같은 성별 게시물
                 </h2>
                 <CategoryCarousel items={sameGenderBoards} basePath="/board" />
@@ -111,7 +109,7 @@ function BoardList() {
         {/* 6) 랜덤 게시물 (맨 아래) */}
         {randomBoards.length > 0 && (
           <>
-            <h2 className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mt-12 mb-4">            
+            <h2 className="text-3xl font-semibold text-white mt-12 mb-4">
               랜덤 게시물
             </h2>
             <CategoryCarousel items={randomBoards} basePath="/board" />

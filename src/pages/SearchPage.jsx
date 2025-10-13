@@ -1,4 +1,3 @@
-// src/pages/SearchPage.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
@@ -54,7 +53,7 @@ function SearchPage() {
   }, [searchTerm]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <div className="min-h-screen bg-[#121212] text-white">
       <main className="w-full mx-auto px-2 sm:px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 pt-6 pb-8">
         {searchTerm.trim() === '' ? (
           <div className="text-center text-gray-400 mt-20">
