@@ -117,26 +117,28 @@ function Chat() {
   };
 
   return (
-    <div className="min-h-screen bg-[#121212] text-white px-0 pt-16">
-      {/* 설명 */}
-      <div className="max-w-full px-10 text-left mb-6 mt-0">
-        <h2 className="text-5xl font-bold text-white mb-2">AI와 함께 노래를 만들어봐요!</h2>
-        <p className="text-[18px] text-gray-300 leading-relaxed mt-6">
-          아직 떠오르는 주제나 가사가 없어도 괜찮아요.<br />
-          AI가 대화를 통해 멋진 노래를 만들어 줄 거예요.<br />
-          생각나는 감정이나 이야기를 자유롭게 입력해보세요.<br />
-          <span className="block mt-4 text-white font-medium">
-            추가하거나 수정할 내용이 없다면 아래 ‘노래 만들기’ 버튼을 눌러주세요!
-          </span>
-        </p>
-      </div>
+    <div className="min-h-screen bg-[#121212] text-white pt-16">
+      
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 py-8 grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
 
-      {/* 채팅 */}
-      <div className="grid grid-cols-12 px-10 mt-[-200px]">
-        <div className="col-span-12 flex flex-col items-end space-y-4 self-start">
+        {/* 1. 설명 (Left Column) */}
+        <div className="text-left lg:pt-4 lg:col-span-2">
+          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-2">AI와 함께 노래를 만들어봐요!</h2>
+          <p className="text-lg text-gray-300 leading-relaxed mt-6">
+            아직 떠오르는 주제나 가사가 없어도 괜찮아요.<br />
+            AI가 대화를 통해 멋진 노래를 만들어 줄 거예요.<br />
+            생각나는 감정이나 이야기를 자유롭게 입력해보세요.<br />
+            <span className="block mt-4 text-white font-medium">
+              추가하거나 수정할 내용이 없다면 아래 ‘노래 만들기’ 버튼을 눌러주세요!
+            </span>
+          </p>
+        </div>
+
+        {/* 2. 채팅 (Right Column) */}
+        <div className="flex flex-col items-center lg:items-end space-y-4 w-full lg:col-span-3">
           {/* 대화창 */}
           <div
-            className="h-[550px] w-[65%] ml-auto bg-gray-800/50 backdrop-blur-md rounded-xl p-6 overflow-y-scroll shadow-lg"
+            className="h-[600px] w-full bg-gray-800/50 backdrop-blur-md rounded-xl p-6 overflow-y-scroll shadow-lg"
             ref={scrollRef}
             onScroll={handleScroll}
           >
@@ -166,7 +168,7 @@ function Chat() {
           )}
 
           {/* 입력창 */}
-          <div className="w-[65%] flex rounded-lg overflow-hidden shadow ml-auto">
+          <div className="w-full flex rounded-lg overflow-hidden shadow">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -183,7 +185,7 @@ function Chat() {
           </div>
 
           {/* 노래 만들기 버튼 */}
-          <div className="w-[60%] text-right ml-auto">
+          <div className="w-full text-right">
             <button
               onClick={handleGenerate}
               disabled={generating}

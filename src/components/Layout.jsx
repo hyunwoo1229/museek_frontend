@@ -57,9 +57,9 @@ const Layout = () => {
   return (
     <div className="min-h-screen bg-[#121212] text-white">
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#121212] backdrop-blur-md shadow-lg">
-        <div className="w-full mx-auto px-2 sm:px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 flex items-center gap-4 py-3">
+        <div className="w-full mx-auto px-2 sm:px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 flex items-center gap-2 sm:gap-4 py-3">
           <div
-            className="flex items-center gap-2 cursor-pointer ml-2"
+            className="flex items-center gap-2 cursor-pointer ml-2 flex-shrink-0"
             onClick={() => navigate('/')}
           >
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
@@ -70,14 +70,14 @@ const Layout = () => {
 
           <form
             onSubmit={handleSearchSubmit}
-            className="flex items-center ml-auto mr-auto flex-1 max-w-3xl"
+            className="flex items-center flex-1 min-w-0 mx-4 sm:mx-8 max-w-3xl"
           >
             <input
               type="text"
               value={headerSearch}
-              onChange={e => setSearchHeader(e.target.value)}
+              onChange={e => setHeaderSearch(e.target.value)}
               placeholder="게시물 제목 검색"
-              className="flex-grow bg-[#1c1c1c] border border-gray-600 text-white px-4 py-2.5 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="flex-grow bg-[#1c1c1c] border border-gray-600 text-white px-4 py-2.5 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-500 min-w-0"
             />
             <button
               type="submit"
@@ -88,22 +88,23 @@ const Layout = () => {
             </button>
           </form>
 
-          <div className="flex items-center gap-3 flex-wrap ml-auto">
+          {/* [수정] ml-auto를 다시 추가하여 오른쪽 정렬 복원 */}
+          <div className="flex items-center gap-2 sm:gap-3 flex-nowrap flex-shrink-0 ml-auto">
             {userName ? (
               <>
                 {!hideSongButton && (
                   <button
                     onClick={() => navigate('/chat')}
-                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-[#282828] text-white hover:bg-[#383838] transition-all"
+                    className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-full bg-[#282828] text-white hover:bg-[#383838] transition-all"
                   >
                     <PlusCircle size={16} />
-                    <span>노래 생성하기</span>
+                    <span className="hidden sm:inline">노래 생성하기</span>
                   </button>
                 )}
 
                 <button
                   onClick={() => navigate(profilePath)}
-                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-[#282828] text-white hover:bg-[#383838] transition-colors"
+                  className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-full bg-[#282828] text-white hover:bg-[#383838] transition-colors"
                 >
                   <User size={16} />
                   <span className="hidden sm:inline">{profileLabel}</span>
@@ -111,13 +112,13 @@ const Layout = () => {
 
                 <button
                   onClick={handleLogout}
-                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-[#282828] text-white hover:bg-[#383838] transition-colors"
+                  className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-full bg-[#282828] text-white hover:bg-[#383838] transition-colors"
                 >
                   <LogOut size={16} />
                   <span className="hidden sm:inline">로그아웃</span>
                 </button>
 
-                <div className="hidden sm:block text-right ml-2">
+                <div className="hidden md:block text-right ml-2">
                   <div className="text-sm text-gray-400">안녕하세요</div>
                   <div className="text-base font-semibold text-white">
                     {userName}님!
@@ -128,14 +129,14 @@ const Layout = () => {
               <>
                 <button
                   onClick={() => navigate('/login')}
-                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-[#282828] text-white hover:bg-[#383838] transition-all"
+                  className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-full bg-[#282828] text-white hover:bg-[#383838] transition-all"
                 >
                   <LogIn size={16} />
-                  <span>로그인</span>
+                  <span className="hidden sm:inline">로그인</span>
                 </button>
                 <button
                   onClick={() => navigate('/register')}
-                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-[#282828] text-white hover:bg-[#383838] transition-colors"
+                  className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-full bg-[#282828] text-white hover:bg-[#383838] transition-colors"
                 >
                   <UserPlus size={16} />
                   <span className="hidden sm:inline">회원가입</span>
@@ -148,7 +149,7 @@ const Layout = () => {
 
       {location.pathname === '/' && !userName && <IntroSection />}
 
-      <main className="pt-20">
+      <main className="pt-[68px]"> 
         <Outlet />
       </main>
     </div>
