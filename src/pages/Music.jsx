@@ -27,7 +27,7 @@ function Music() {
 
     const checkMusicReady = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/suno/music-list?taskId=${taskId}`);
+        const response = await axios.get(`/api/suno/music-list?taskId=${taskId}`);
         const completeList = response.data.filter(m => m.audioUrl);
 
         if (completeList.length >= 2) {

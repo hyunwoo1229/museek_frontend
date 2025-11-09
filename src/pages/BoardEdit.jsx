@@ -41,7 +41,7 @@ function BoardEdit() {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:8080/api/board/${id}`,
+        `/api/board/${id}`,
         { title, content }
       );
       alert('수정 완료');

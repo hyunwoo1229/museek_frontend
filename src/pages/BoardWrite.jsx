@@ -26,7 +26,7 @@ function BoardWrite() {
     try {
       // headers 옵션 제거 -> 인터셉터가 자동으로 처리
       await axios.post(
-        'http://localhost:8080/api/board',
+        '/api/board',
         {
           title,
           content,

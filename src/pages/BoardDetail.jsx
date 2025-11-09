@@ -16,7 +16,7 @@ function BoardDetail() {
   useEffect(() => {
     const fetchBoard = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/board/${id}`);
+        const response = await axios.get(`/api/board/${id}`);
         setBoard(response.data);
       } catch (error) {
         console.error('게시글 조회 실패:', error);
@@ -38,7 +38,7 @@ function BoardDetail() {
     if (!window.confirm('정말 삭제하시겠습니까?')) return;
 
     try {
-      await axios.delete(`http://localhost:8080/api/board/${id}`, {
+      await axios.delete(`/api/board/${id}`, {
         headers: { 'Authorization': `Bearer ${accessToken}` }
       });
       alert('게시글이 삭제되었습니다.');
@@ -65,7 +65,7 @@ function BoardDetail() {
       sessionStorage.setItem('pendingUploadBoardId', id);
 
       // 백엔드에 '구글 인증 페이지 URL'을 요청
-      const response = await axios.get("http://localhost:8080/api/youtube/auth-url", {
+      const response = await axios.get("/api/youtube/auth-url", {
         headers: {
           'Authorization': `Bearer ${accessToken}`
         }

@@ -26,9 +26,7 @@ function MyPage() {
 
     const fetchBoards = async () => {
       try {
-        console.log("MyPage: axios.get('/api/board/my') 호출 직전.");
         const response = await axios.get('/api/board/my');
-        console.log("MyPage: 서버로부터 응답 받음.", response);
         setBoards(response.data || []);
 
       } catch (error) {
@@ -37,7 +35,6 @@ function MyPage() {
           alert('게시글을 불러오지.');
         }
       } finally {
-        console.log("MyPage: fetchBoards 종료. 로딩 상태를 해제합니다.");
         setLoading(false);
       }
     };

@@ -17,7 +17,7 @@ const Login = () => {
     try {
         console.log("2. 서버에 로그인 요청 시도. 요청 데이터:", form);
 
-        const res = await axios.post('http://localhost:8080/api/auth/login', form);
+        const res = await axios.post('/api/auth/login', form);
 
         console.log("3. 서버로부터 응답 받음. 응답 데이터:", res.data);
 

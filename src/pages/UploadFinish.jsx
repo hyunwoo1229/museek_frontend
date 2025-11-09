@@ -17,7 +17,7 @@ function UploadFinish() {
       }
 
       try {
-        const res = await axios.post(`http://localhost:8080/api/youtube/${boardId}`, null, {
+        const res = await axios.post(`/api/youtube/${boardId}`, null, {
           headers: {
             'Authorization': `Bearer ${accessToken}`
           }

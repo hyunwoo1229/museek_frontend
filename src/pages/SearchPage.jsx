@@ -34,7 +34,7 @@ function SearchPage() {
       setLoading(true);
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/board/search?query=${encodeURIComponent(keyword)}`
+          `/api/board/search?query=${encodeURIComponent(keyword)}`
         );
         setResults(response.data || []);
       } catch (error) {

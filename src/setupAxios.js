@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // axios의 기본 요청 URL을 백엔드 서버로 설정합니다.
-axios.defaults.baseURL = 'http://localhost:8080';
+axios.defaults.baseURL = 'https://museek-backend-976640207402.asia-northeast3.run.app';
 
 // 백엔드와 쿠키를 주고받기 위해 필수적인 설정입니다.
 axios.defaults.withCredentials = true;

@@ -56,7 +56,7 @@ function Chat() {
 
     try {
       const response = await axios.post(
-        'http://localhost:8080/api/chat',
+        '/api/chat',
         { messages: newMessages }
       );
       const reply = response.data.reply;
@@ -80,7 +80,7 @@ function Chat() {
     setGenerating(true);
     try {
       const response = await axios.post(
-        'http://localhost:8080/api/chat/summarize',
+        '/api/chat/summarize',
         { messages }
       );
       const taskId = response.data;
