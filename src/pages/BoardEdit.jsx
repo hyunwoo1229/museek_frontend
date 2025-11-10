@@ -14,7 +14,7 @@ function BoardEdit() {
   useEffect(() => {
     const fetchBoard = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/board/${id}`);
+        const response = await axios.get(`https://museek-backend-976640207402.asia-northeast3.run.app/api/board/${id}`);
         const board = response.data;
         if (!board.author) {
           alert('작성자만 수정할 수 있습니다.');
