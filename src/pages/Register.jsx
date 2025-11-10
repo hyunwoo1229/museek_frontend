@@ -170,7 +170,7 @@ const Register = () => {
         <div className="mt-6 space-y-2">
           {/* Google */}
           <button
-            onClick={() => (window.location.href = 'http://localhost:8080/oauth2/authorization/google')}
+            onClick={() => (window.location.href = 'https://museek-backend-976640207402.asia-northeast3.run.app/oauth2/authorization/google')}
             className="w-full bg-white text-black py-2 px-4 rounded flex items-center justify-center gap-2 border"
           >
             <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" className="w-5 h-5" />
@@ -179,7 +179,7 @@ const Register = () => {
 
           {/* Naver */}
           <button
-            onClick={() => (window.location.href = 'http://localhost:8080/oauth2/authorization/naver')}
+            onClick={() => (window.location.href = 'https://museek-backend-976640207402.asia-northeast3.run.app/oauth2/authorization/naver')}
             className="w-full bg-[#03C75A] text-white py-2 px-4 rounded flex items-center justify-center gap-2"
           >
             <img src="https://www.svgrepo.com/show/368248/naver-square.svg" alt="Naver" className="w-5 h-5 rounded-sm" />
@@ -188,7 +188,7 @@ const Register = () => {
 
           {/* Kakao */}
           <button
-            onClick={() => (window.location.href = 'http://localhost:8080/oauth2/authorization/kakao')}
+            onClick={() => (window.location.href = 'https://museek-backend-976640207402.asia-northeast3.run.app/oauth2/authorization/kakao')}
             className="w-full bg-[#FEE500] text-black py-2 px-4 rounded flex items-center justify-center gap-2"
           >
             <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="Kakao" className="w-5 h-5" />
