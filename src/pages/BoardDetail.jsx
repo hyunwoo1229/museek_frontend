@@ -74,7 +74,6 @@ function BoardDetail() {
       const googleAuthUrl = response.data;
 
       // 백엔드로부터 받은 구글 인증 페이지로 사용자를 이동.
-      // 이후 과정은 구글 인증 -> 백엔드 콜백 -> /upload-finish 페이지로 자동 진행
       window.location.href = googleAuthUrl;
 
     } catch (error) {
@@ -94,11 +93,11 @@ function BoardDetail() {
   if (!board) return null;
 
   return (
-    <div className="min-h-screen bg-[#121212] text-white px-4 py-12">
+    <div className="min-h-screen bg-[#121212] text-white px-4 py-6 md:py-12">
       <div className="max-w-4xl mx-auto space-y-6">
-        <div className="flex justify-between items-start">
-          <div>
-            <h2 className="text-3xl font-bold text-white mb-2">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-4 md:gap-0">
+          <div className="w-full md:w-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 break-keep">
               {board.title}
             </h2>
             <p className="text-gray-400 text-sm">
@@ -107,17 +106,17 @@ function BoardDetail() {
           </div>
 
           {board.author === true && (
-            <div className="flex gap-2">
+            <div className="flex gap-2 self-end md:self-auto">
               <button
                 onClick={handleEdit}
-                className="flex items-center gap-1 px-4 py-2 text-sm font-medium bg-white text-black rounded-lg hover:bg-gray-200 transition"
+                className="flex items-center gap-1 px-3 py-2 md:px-4 md:py-2 text-sm font-medium bg-white text-black rounded-lg hover:bg-gray-200 transition"
               >
                 <Pencil size={16} />
                 수정
               </button>
               <button
                 onClick={handleDelete}
-                className="flex items-center gap-1 px-4 py-2 text-sm font-medium bg-white text-black rounded-lg hover:bg-gray-200 transition"
+                className="flex items-center gap-1 px-3 py-2 md:px-4 md:py-2 text-sm font-medium bg-white text-black rounded-lg hover:bg-gray-200 transition"
               >
                 <Trash2 size={16} />
                 삭제
@@ -126,7 +125,7 @@ function BoardDetail() {
           )}
         </div>
 
-        <div className="w-1/2 aspect-video mx-auto mb-6 overflow-hidden rounded-xl shadow-lg">
+        <div className="w-full md:w-2/3 lg:w-1/2 aspect-video mx-auto mb-6 overflow-hidden rounded-xl shadow-lg">
           <img
             src={board.imageUrl}
             alt="cover"
@@ -144,14 +143,16 @@ function BoardDetail() {
           />
         </div>
 
-        <p className="text-lg text-white/90 whitespace-pre-line">{board.content || '내용이 없습니다.'}</p>
+        <p className="text-base md:text-lg text-white/90 whitespace-pre-line leading-relaxed">
+            {board.content || '내용이 없습니다.'}
+        </p>
 
         {board.author === true && (
           <div className="text-right">
             <button
               onClick={handleYoutubeUpload}
               disabled={uploading}
-              className="inline-flex items-center gap-2 px-5 py-3 mt-4 font-semibold text-white bg-gradient-to-r from-red-600 to-red-500 rounded-lg hover:brightness-110 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full md:w-auto inline-flex justify-center items-center gap-2 px-5 py-3 mt-4 font-semibold text-white bg-gradient-to-r from-red-600 to-red-500 rounded-lg hover:brightness-110 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Upload size={18} />
               {uploading ? '인증 페이지로 이동 중...' : 'YouTube 업로드'}

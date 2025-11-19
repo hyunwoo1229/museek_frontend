@@ -54,8 +54,8 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-[#121212] text-white">
-      <div className="bg-gray-800/80 backdrop-blur-md p-8 rounded-xl shadow-xl w-full max-w-sm">
+    <div className="min-h-screen flex justify-center items-center bg-[#121212] text-white py-12 px-4">
+      <div className="bg-gray-800/80 backdrop-blur-md p-6 md:p-8 rounded-xl shadow-xl w-full max-w-md">
         <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 text-center mb-6">
           회원가입
         </h2>
@@ -111,36 +111,38 @@ const Register = () => {
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-300">나이</label>
-            <select
-              name="age"
-              value={form.age}
-              onChange={handleChange}
-              className="w-full bg-gray-700 border border-gray-600 text-white px-3 py-2 rounded"
-              required
-            >
-              <option value="">나이 선택</option>
-              {ages.map(age => (
-                <option key={age} value={age}>{age}세</option>
-              ))}
-            </select>
-          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-300">나이</label>
+              <select
+                name="age"
+                value={form.age}
+                onChange={handleChange}
+                className="w-full bg-gray-700 border border-gray-600 text-white px-3 py-2 rounded"
+                required
+              >
+                <option value="">선택</option>
+                {ages.map(age => (
+                  <option key={age} value={age}>{age}세</option>
+                ))}
+              </select>
+            </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-300">성별</label>
-            <select
-              name="gender"
-              value={form.gender}
-              onChange={handleChange}
-              className="w-full bg-gray-700 border border-gray-600 text-white px-3 py-2 rounded"
-              required
-            >
-              <option value="">성별 선택</option>
-              {genders.map(g => (
-                <option key={g} value={g}>{g}</option>
-              ))}
-            </select>
+            <div>
+              <label className="block text-sm font-medium text-gray-300">성별</label>
+              <select
+                name="gender"
+                value={form.gender}
+                onChange={handleChange}
+                className="w-full bg-gray-700 border border-gray-600 text-white px-3 py-2 rounded"
+                required
+              >
+                <option value="">선택</option>
+                {genders.map(g => (
+                  <option key={g} value={g}>{g}</option>
+                ))}
+              </select>
+            </div>
           </div>
 
           <div>
@@ -161,7 +163,7 @@ const Register = () => {
 
           <button
             type="submit"
-            className="w-full py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded hover:brightness-110 transition"
+            className="w-full py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded hover:brightness-110 transition mt-4"
           >
             회원가입
           </button>
@@ -171,7 +173,7 @@ const Register = () => {
           {/* Google */}
           <button
             onClick={() => (window.location.href = 'https://museek-backend-976640207402.asia-northeast3.run.app/oauth2/authorization/google')}
-            className="w-full bg-white text-black py-2 px-4 rounded flex items-center justify-center gap-2 border"
+            className="w-full bg-white text-black py-2 px-4 rounded flex items-center justify-center gap-2 border hover:bg-gray-100 transition"
           >
             <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" className="w-5 h-5" />
             구글로 시작하기
@@ -180,7 +182,7 @@ const Register = () => {
           {/* Naver */}
           <button
             onClick={() => (window.location.href = 'https://museek-backend-976640207402.asia-northeast3.run.app/oauth2/authorization/naver')}
-            className="w-full bg-[#03C75A] text-white py-2 px-4 rounded flex items-center justify-center gap-2"
+            className="w-full bg-[#03C75A] text-white py-2 px-4 rounded flex items-center justify-center gap-2 hover:bg-[#02b351] transition"
           >
             <img src="https://www.svgrepo.com/show/368248/naver-square.svg" alt="Naver" className="w-5 h-5 rounded-sm" />
             네이버로 시작하기
@@ -189,7 +191,7 @@ const Register = () => {
           {/* Kakao */}
           <button
             onClick={() => (window.location.href = 'https://museek-backend-976640207402.asia-northeast3.run.app/oauth2/authorization/kakao')}
-            className="w-full bg-[#FEE500] text-black py-2 px-4 rounded flex items-center justify-center gap-2"
+            className="w-full bg-[#FEE500] text-black py-2 px-4 rounded flex items-center justify-center gap-2 hover:bg-[#fdd835] transition"
           >
             <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="Kakao" className="w-5 h-5" />
             카카오로 시작하기
