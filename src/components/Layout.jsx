@@ -62,10 +62,10 @@ const Layout = () => {
             className="flex items-center gap-2 cursor-pointer ml-2 flex-shrink-0"
             onClick={() => navigate('/')}
           >
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
               <Music size={20} className="text-white" />
             </div>
-            <span className="text-4xl font-bold">Museek</span>
+            <span className="text-2xl md:text-4xl font-bold">Museek</span>
           </div>
 
           <form
@@ -88,7 +88,6 @@ const Layout = () => {
             </button>
           </form>
 
-          {/* [수정] ml-auto를 다시 추가하여 오른쪽 정렬 복원 */}
           <div className="flex items-center gap-2 sm:gap-3 flex-nowrap flex-shrink-0 ml-auto">
             {userName ? (
               <>
