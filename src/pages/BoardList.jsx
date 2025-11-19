@@ -12,7 +12,9 @@ const SimpleCarousel = ({ title, items, basePath }) => {
   const scroll = (direction) => {
     if (scrollRef.current) {
       const { current } = scrollRef;
-      const scrollAmount = direction === 'left' ? -340 : 340;
+
+      const scrollAmount = direction === 'left' ? -1000 : 1000;
+      
       current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
@@ -29,6 +31,7 @@ const SimpleCarousel = ({ title, items, basePath }) => {
       >
         <ChevronLeft size={24} />
       </button>
+
       <div
         ref={scrollRef}
         className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 px-2"
@@ -38,7 +41,6 @@ const SimpleCarousel = ({ title, items, basePath }) => {
           <div
             key={item.id}
             onClick={() => navigate(`${basePath}/detail/${item.id}`)}
-  
             className="snap-center flex-shrink-0 cursor-pointer group/item w-[90vw] md:w-[320px]"
           >
             <div className="aspect-video w-full overflow-hidden rounded-lg bg-gray-800 relative mb-3 shadow-md">
@@ -68,7 +70,7 @@ const SimpleCarousel = ({ title, items, basePath }) => {
       >
         <ChevronRight size={24} />
       </button>
-
+      
       <style jsx>{`
         div::-webkit-scrollbar {
           display: none;
