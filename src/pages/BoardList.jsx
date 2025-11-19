@@ -12,29 +12,26 @@ const SimpleCarousel = ({ title, items, basePath }) => {
   const scroll = (direction) => {
     if (scrollRef.current) {
       const { current } = scrollRef;
-      
       const scrollAmount = direction === 'left' ? -1000 : 1000;
-      
       current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
 
   return (
     <div className="mb-12 relative group">
-      <h2 className="text-xl md:text-3xl font-semibold text-white mb-4 px-2">
+      <h2 className="text-xl md:text-3xl font-semibold text-white mb-4 px-1">
         {title}
       </h2>
-
       <button
         onClick={() => scroll('left')}
-        className="hidden md:flex absolute left-0 top-[60%] -translate-y-1/2 -translate-x-12 z-10 bg-black/50 hover:bg-black/80 text-white p-2 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+        className="hidden md:flex absolute left-0 top-[60%] -translate-y-1/2 -translate-x-4 z-10 bg-black/50 hover:bg-black/80 text-white p-2 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
       >
         <ChevronLeft size={24} />
       </button>
 
       <div
         ref={scrollRef}
-        className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 px-2"
+        className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 px-1"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {items.map((item) => (
@@ -66,7 +63,7 @@ const SimpleCarousel = ({ title, items, basePath }) => {
 
       <button
         onClick={() => scroll('right')}
-        className="hidden md:flex absolute right-0 top-[60%] -translate-y-1/2 translate-x-12 z-10 bg-black/50 hover:bg-black/80 text-white p-2 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+        className="hidden md:flex absolute right-0 top-[60%] -translate-y-1/2 translate-x-4 z-10 bg-black/50 hover:bg-black/80 text-white p-2 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
       >
         <ChevronRight size={24} />
       </button>
@@ -131,8 +128,8 @@ function BoardList() {
 
   return (
     <div className="min-h-screen bg-[#121212] text-white">
-  
-      <main className="w-full max-w-[1600px] mx-auto px-4 md:px-16 lg:px-24 pt-8 pb-12 overflow-hidden">
+ 
+      <main className="w-full mx-auto px-2 sm:px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 pt-8 pb-12 overflow-hidden">
         
         <SimpleCarousel title="조회순 게시물" items={boards.popular} basePath="/board" />
         <SimpleCarousel title="최신순 게시물" items={boards.recent} basePath="/board" />
